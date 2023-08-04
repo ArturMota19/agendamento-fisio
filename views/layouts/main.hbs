@@ -8,6 +8,9 @@
   <meta name="description" content="Agendamento Fisio">
   <meta name="author" content="JSagon">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/public/style.css">
 </head>
 <body>
@@ -15,14 +18,19 @@
     {{{body}}} 
   </main>
     <script>
-
       const socket = io.connect()
 
-      function enviar(){
-        socket.emit('mudarCorBg')
+      function returnName(id){
+          const nomeEvent = document.getElementById("nomeEvent"+id)
+          ocuparSala(id,nomeEvent.value)
       }
-      socket.on('mudarCorBg', () => {
-        document.getElementById('divCor').style.backgroundColor = 'red'
+
+      function ocuparSala(id,nome){
+          socket.emit('ocuparSala',id,nome)
+          console.log(id,nome)
+      }
+      socket.on('voltandoOcuparSala', (id) => {
+        document.getElementById('wrapperContainerSala'+id).style.backgroundColor = 'red'
       })
   </script>
 </body>

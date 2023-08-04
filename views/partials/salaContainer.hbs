@@ -1,0 +1,14 @@
+{{#if this.ocupada}}
+    <div class="wrapperContainerSala" id="wrapperContainerSala{{this.id}}">
+        <p>Horário: {{this.horario}}</p>
+        <p>Ocupada por: {{this.Ocupante}}</p>
+    </div>
+{{else}}
+    <div class="wrapperContainerSala" id="wrapperContainerSala{{this.id}}">
+        <p>Horário: {{this.horario}}</p>
+        <div class="buttonDiv">
+            <input id="nomeEvent{{this.id}}" placeholder="Nome" type="text" required/>
+            <button onclick="returnName('{{this.id}}')">Ocupar Sala</button>
+        </div>
+    </div>
+{{/if}}
