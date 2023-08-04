@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Agendamento Fisio</title>
+  <script src="socket.io/socket.io.js"></script>
   <meta name="description" content="Agendamento Fisio">
   <meta name="author" content="JSagon">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
@@ -13,5 +14,16 @@
   <main class="container">
     {{{body}}} 
   </main>
+    <script>
+
+      const socket = io.connect()
+
+      function enviar(){
+        socket.emit('mudarCorBg')
+      }
+      socket.on('mudarCorBg', () => {
+        document.getElementById('divCor').style.backgroundColor = 'red'
+      })
+  </script>
 </body>
 </html>
