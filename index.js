@@ -19,12 +19,32 @@ app.get('/', (req, res) => {
     io.on('connection',(socket) =>{
         console.log('nova conexao')
         historico.forEach(item =>{
-            socket.emit('mudarCorBg')
+            console.log(item)
+            socket.emit('alterarFront', item.id, item.nome, item.horario)
         })
 
         socket.on('ocuparSala', (id,nome) =>{
-            console.log(id,nome)
-            historico.push('mudarCorBg')
+            if(id < 24){
+                const idSala1 = arraySalas1.findIndex(element => element.id == id)
+                arraySalas1[idSala1].Ocupante = nome
+                arraySalas1[idSala1].ocupada = 1
+                socket.emit('alterarFront', id, nome, arraySalas1[idSala1].horario)
+                historico.push({id, nome, horario: arraySalas1[idSala1].horario})
+            }else if(id < 47){
+                console.log(id + 'kdaskdosakdosadkosa')
+                const idSala2 = arraySalas2.findIndex(element => element.id == id)
+                arraySalas2[idSala2].Ocupante = nome
+                arraySalas2[idSala2].ocupada = 1
+                socket.emit('alterarFront', id, nome, arraySalas1[idSala2].horario)
+                historico.push({id, nome, horario: arraySalas2[idSala2].horario})
+                
+            }else{
+                const idSala3 = arraySalas3.findIndex(element => element.id == id)
+                arraySalas3[idSala3].Ocupante = nome
+                arraySalas3[idSala3].ocupada = 1
+                socket.emit('alterarFront', id, nome, arraySalas3[idSala3].horario)
+                historico.push({id, nome, horario: arraySalas3[idSala3].horario})
+            }
         })
     })
     const arraySalas1 = [

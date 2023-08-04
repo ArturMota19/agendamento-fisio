@@ -20,17 +20,19 @@
     <script>
       const socket = io.connect()
 
-      function returnName(id){
+      function returnName(id, horario){
           const nomeEvent = document.getElementById("nomeEvent"+id)
-          ocuparSala(id,nomeEvent.value)
+          ocuparSala(id,nomeEvent.value, )
       }
-
-      function ocuparSala(id,nome){
-          socket.emit('ocuparSala',id,nome)
-          console.log(id,nome)
+      function ocuparSala(id,nome, horario){
+          socket.emit('ocuparSala',id,nome, horario)
       }
-      socket.on('voltandoOcuparSala', (id) => {
-        document.getElementById('wrapperContainerSala'+id).style.backgroundColor = 'red'
+      socket.on('alterarFront', (id,nome, horario) => {
+        document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
+        document.getElementById('wrapperContainerSala'+id).innerHTML = `
+        <p>Horário: ${horario}</p>
+        <p>Ocupada por: ${nome}</p>
+        `
       })
   </script>
 </body>
