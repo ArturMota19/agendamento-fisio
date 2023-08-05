@@ -1,36 +1,13 @@
+
 <main class="wrapperHome">
-    <div class="internDivAgendamento">
-        <h1 class="idMudarDia" id="idMudarDia"></h1>
-    </div>
-    <section class="salaDivWrapper">
-        <div class="salaDiv">
-            <h2>Sala 1</h2>
-            <div class="wrapperHorariosOcupados">
-                {{#each arraySalas1}}
-                    {{> salaContainer}}
-                {{/each}}
-            </div>
-        </div>
-        <div class="salaDiv">
-            <h2>Sala 2</h2>
-            <div class="wrapperHorariosOcupados">
-                {{#each arraySalas2}}
-                    {{> salaContainer}}
-                {{/each}}
-            </div>
-        </div>
-        <div class="salaDiv">
-            <h2>Sala 3</h2>
-            <div class="wrapperHorariosOcupados">
-                {{#each arraySalas3}}
-                    {{> salaContainer}}
-                {{/each}}
-            </div>
-        </div>
+    {{>header}}
+    <section class="salaDivWrapper" id="selectedDay">
     </section>
 </main>
 
 <script>
+
+
 function formatarData(data) {
   var dia = data.getDate();
   var mes = data.getMonth() + 1;
@@ -53,9 +30,5 @@ var dataFormatada = formatarData(dataAtual);
 
 // Obtendo o dia da semana atual
 var diaDaSemanaAtual = diasDaSemana[dataAtual.getDay()];
-
-
-const mudarDia = document.getElementById("idMudarDia")
-mudarDia.innerHTML = `${diaDaSemanaAtual} - Agendamentos`
 
 </script>

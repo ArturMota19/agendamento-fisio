@@ -1,0 +1,40 @@
+<div class="headerWrapper">
+    <h1 class="titleSelected" onclick="headerSelected('Segunda')" id="Segunda">Segunda (<span id="segHeader"></span>)</h1>
+    <h1 class="titleSelected" onclick="headerSelected('Terca')" id="Terca">Terça (<span id="terHeader"></span>)</h1>
+    <h1 class="titleSelected" onclick="headerSelected('Quarta')" id="Quarta">Quarta (<span id="quaHeader"></span>)</h1>
+    <h1 class="titleSelected" onclick="headerSelected('Quinta')" id="Quinta">Quinta (<span id="quiHeader"></span>)</h1>
+    <h1 class="titleSelected" onclick="headerSelected('Sexta')" id="Sexta">Sexta (<span id="sexHeader"></span>)</h1>
+</div>
+<script>
+function obterProximaData(diaSemana) {
+  const hoje = new Date();
+  console.log(hoje)
+  const diferencaDias = (diaSemana - hoje.getDay() + 7) % 7;
+  const proximaData = new Date(hoje.getTime() + diferencaDias * 24 * 60 * 60 * 1000);
+
+  const dia = String(proximaData.getDate()).padStart(2, '0');
+  const mes = String(proximaData.getMonth() + 1).padStart(2, '0');
+  const ano = proximaData.getFullYear();
+
+  return `${dia}/${mes}/${ano}`;
+}
+
+const SEGUNDA = 1;
+const TERCA = 2;
+const QUARTA = 3;
+const QUINTA = 4;
+const SEXTA = 5;
+
+const segundaMaisProxima = obterProximaData(SEGUNDA);
+const terçaMaisProxima = obterProximaData(TERCA);
+const quartaMaisProxima = obterProximaData(QUARTA);
+const quintaMaisProxima = obterProximaData(QUINTA);
+const sextaMaisProxima = obterProximaData(SEXTA);
+
+document.getElementById('segHeader').innerHTML = segundaMaisProxima
+document.getElementById('terHeader').innerHTML = terçaMaisProxima
+document.getElementById('quaHeader').innerHTML = quartaMaisProxima
+document.getElementById('quiHeader').innerHTML = quintaMaisProxima
+document.getElementById('sexHeader').innerHTML = sextaMaisProxima
+
+</script>

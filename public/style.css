@@ -44,6 +44,20 @@ table {
 }
 
 /*Inicio do CSS*/
+.headerWrapper{
+    width: 100%;
+    background-color: teal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    height: 3rem;
+}
+
+.titleSelected{
+    cursor: pointer;
+}
+
 .wrapperHome{
     width: 100%;
     background-color: #CFFADD;

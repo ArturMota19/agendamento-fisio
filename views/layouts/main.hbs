@@ -17,23 +17,213 @@
   <main class="container">
     {{{body}}} 
   </main>
-    <script>
-      const socket = io.connect()
-
-      function returnName(id, horario){
-          const nomeEvent = document.getElementById("nomeEvent"+id)
-          ocuparSala(id,nomeEvent.value, )
-      }
-      function ocuparSala(id,nome, horario){
-          socket.emit('ocuparSala',id,nome, horario)
-      }
-      socket.on('alterarFront', (id,nome, horario) => {
-        document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
-        document.getElementById('wrapperContainerSala'+id).innerHTML = `
-        <p>Horário: ${horario}</p>
-        <p>Ocupada por: ${nome}</p>
-        `
-      })
-  </script>
 </body>
+<script>
+  const socket = io.connect()
+
+function returnName(id, horario, dia){
+
+    const nomeEvent = document.getElementById("nomeEvent"+id)
+    ocuparSala(id,nomeEvent.value,horario, dia)
+}
+function ocuparSala(id,nome, horario, dia){
+    socket.emit('ocuparSala',id,nome, horario, dia)
+}
+// Selecionar Header
+function headerSelected(selected){
+const daysOfWeek = ["Segunda", "Terca", "Quarta", "Quinta", "Sexta"];
+let selectedDay = document.getElementById("selectedDay");
+
+for (const day of daysOfWeek) {
+    const element = document.getElementById(day);
+    element.style.color = ''
+    if( day == selected){
+        element.style.color = 'red'
+    }
+
+}
+if(selected == "Segunda"){
+        socket.emit('historicoSegunda')
+        socket.on('alterarFrontSegunda', (id,nome, horario) => {
+            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
+            document.getElementById('wrapperContainerSala'+id).innerHTML = `
+            <p>Horário: ${horario}</p>
+            <p>Ocupada por: ${nome}</p>
+            `
+        })
+        selectedDay.innerHTML = `
+        <div class="salaDiv">
+            <h2>Sala 1</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas1Segunda}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 2</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas2Segunda}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 3</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas3Segunda}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        `
+
+    }else if(selected == "Terca"){
+        socket.emit('historicoTerca')
+        socket.on('alterarFrontTerca', (id,nome, horario) => {
+            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
+            document.getElementById('wrapperContainerSala'+id).innerHTML = `
+            <p>Horário: ${horario}</p>
+            <p>Ocupada por: ${nome}</p>
+            `
+        })
+        selectedDay.innerHTML = `
+        <div class="salaDiv">
+            <h2>Sala 1</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas1Terca}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 2</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas2Terca}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 3</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas3Terca}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        `
+
+    }else if(selected == "Quarta"){
+        socket.emit('historicoQuarta')
+        socket.on('alterarFrontQuarta', (id,nome, horario) => {
+            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
+            document.getElementById('wrapperContainerSala'+id).innerHTML = `
+            <p>Horário: ${horario}</p>
+            <p>Ocupada por: ${nome}</p>
+            `
+        })
+        selectedDay.innerHTML = `
+        <div class="salaDiv">
+            <h2>Sala 1</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas1Quarta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 2</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas2Quarta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 3</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas3Quarta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        `
+
+    }else if(selected == "Quinta"){
+        socket.emit('historicoQuinta')
+        socket.on('alterarFrontQuinta', (id,nome, horario) => {
+            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
+            document.getElementById('wrapperContainerSala'+id).innerHTML = `
+            <p>Horário: ${horario}</p>
+            <p>Ocupada por: ${nome}</p>
+            `
+        })
+        selectedDay.innerHTML = `
+        <div class="salaDiv">
+            <h2>Sala 1</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas1Quinta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 2</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas2Quinta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 3</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas3Quinta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        `
+
+    }else if(selected == "Sexta"){
+        socket.emit('historicoSexta')
+        socket.on('alterarFrontSexta', (id,nome, horario) => {
+            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
+            document.getElementById('wrapperContainerSala'+id).innerHTML = `
+            <p>Horário: ${horario}</p>
+            <p>Ocupada por: ${nome}</p>
+            `
+        })
+        selectedDay.innerHTML = `
+        <div class="salaDiv">
+            <h2>Sala 1</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas1Sexta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 2</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas2Sexta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 3</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas3Sexta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        `
+
+    }
+}
+headerSelected('Segunda')
+</script>
 </html>
