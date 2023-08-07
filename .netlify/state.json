@@ -1,0 +1,19 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Salvador",
+			"country": {
+				"code": "BR",
+				"name": "Brazil"
+			},
+			"subdivision": {
+				"code": "BA",
+				"name": "Bahia"
+			},
+			"timezone": "America/Bahia",
+			"latitude": -12.8671,
+			"longitude": -38.4807
+		},
+		"timestamp": 1691435489903
+	}
+}

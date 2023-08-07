@@ -1,0 +1,10 @@
+[build]
+    publish = "site"
+    functions = "functions"
+[functions]
+    [functions.hello]
+        included_files = ["templates/*.hbs"]
+[[redirects]]
+    from = "/index"
+    to = "/.netlify/functions/index"
+    status = 200
