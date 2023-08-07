@@ -25,10 +25,11 @@ socket.on('reloadPage', () => {
 })
 function returnName(id, horario, dia){
     const nomeEvent = document.getElementById("nomeEvent"+id)
-    ocuparSala(id,nomeEvent.value,horario, dia)
+    const pacienteFixo = document.getElementById("pacienteFixo"+id)
+    ocuparSala(id,nomeEvent.value,horario, dia, pacienteFixo.value)
 }
-function ocuparSala(id,nome, horario, dia){
-    socket.emit('ocuparSala',id,nome, horario, dia)
+function ocuparSala(id,nome, horario, dia, fixo){
+    socket.emit('ocuparSala',id,nome, horario, dia, fixo)
 }
 async function desocuparSalaSegunda(id,nome, horario, dia){
     if(dia != undefined){
