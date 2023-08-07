@@ -403,26 +403,47 @@ app.get('/', (req, res) => {
                 socket.emit('alterarFrontSegunda', item.id, item.nome, item.horario, item.dia)
             })
         })
+        socket.on('desocuparSalaSegunda', (id,nome, horario,dia) => {
+            historicoSegunda.splice(element => element.id == id && element.nome == nome)
+            socket.emit('reloadPage');
+        })
         socket.on('historicoTerca', () => {
             historicoTerca.forEach(item =>{
                 socket.emit('alterarFrontTerca', item.id, item.nome, item.horario, item.dia)
             })
+        })
+        socket.on('desocuparSalaTerca', (id,nome, horario,dia) => {
+            historicoTerca.splice(element => element.id == id && element.nome == nome)
+            socket.emit('reloadPage');
         })
         socket.on('historicoQuarta', () => {
             historicoQuarta.forEach(item =>{
                 socket.emit('alterarFrontQuarta', item.id, item.nome, item.horario, item.dia)
             })
         })
+        socket.on('desocuparSalaQuarta', (id,nome, horario,dia) => {
+            historicoQuarta.splice(element => element.id == id && element.nome == nome)
+            socket.emit('reloadPage');
+        })
         socket.on('historicoQuinta', () => {
             historicoQuinta.forEach(item =>{
                 socket.emit('alterarFrontQuinta', item.id, item.nome, item.horario, item.dia)
             })
+        })
+        socket.on('desocuparSalaQuinta', (id,nome, horario,dia) => {
+            historicoQuinta.splice(element => element.id == id && element.nome == nome)
+            socket.emit('reloadPage');
         })
         socket.on('historicoSexta', () => {
             historicoSexta.forEach(item =>{
                 socket.emit('alterarFrontSexta', item.id, item.nome, item.horario, item.dia)
             })
         })
+        socket.on('desocuparSalaSexta', (id,nome, horario,dia) => {
+            historicoSexta.splice(element => element.id == id && element.nome == nome)
+            socket.emit('reloadPage');
+        })
+        
         socket.on('ocuparSala', (id,nome, horario, dia) =>{
             if(dia == 'Segunda'){
                 if(id < 24){

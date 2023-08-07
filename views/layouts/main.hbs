@@ -19,16 +19,43 @@
   </main>
 </body>
 <script>
-  const socket = io.connect()
-
+const socket = io.connect()
+socket.on('reloadPage', () => {
+    window.location.reload()
+})
 function returnName(id, horario, dia){
-
     const nomeEvent = document.getElementById("nomeEvent"+id)
     ocuparSala(id,nomeEvent.value,horario, dia)
 }
 function ocuparSala(id,nome, horario, dia){
     socket.emit('ocuparSala',id,nome, horario, dia)
 }
+async function desocuparSalaSegunda(id,nome, horario, dia){
+    if(dia != undefined){
+        await socket.emit('desocuparSalaSegunda',id,nome, horario, dia)
+    }
+}
+async function desocuparSalaTerca(id,nome, horario, dia){
+    if(dia != undefined){
+        await socket.emit('desocuparSalaTerca',id,nome, horario, dia)
+    }
+}
+async function desocuparSalaQuarta(id,nome, horario, dia){
+    if(dia != undefined){
+        await socket.emit('desocuparSalaQuarta',id,nome, horario, dia)
+    }
+}
+async function desocuparSalaQuinta(id,nome, horario, dia){
+    if(dia != undefined){
+        await socket.emit('desocuparSalaQuinta',id,nome, horario, dia)
+    }
+}
+async function desocuparSalaSexta(id,nome, horario, dia){
+    if(dia != undefined){
+        await socket.emit('desocuparSalaSexta',id,nome, horario, dia)
+    }
+}
+
 // Selecionar Header
 function headerSelected(selected){
 const daysOfWeek = ["Segunda", "Terca", "Quarta", "Quinta", "Sexta"];
@@ -44,11 +71,12 @@ for (const day of daysOfWeek) {
 }
 if(selected == "Segunda"){
         socket.emit('historicoSegunda')
-        socket.on('alterarFrontSegunda', (id,nome, horario) => {
+        socket.on('alterarFrontSegunda', (id,nome, horario, dia) => {
             document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
             document.getElementById('wrapperContainerSala'+id).innerHTML = `
             <p>Horário: ${horario}</p>
             <p>Ocupada por: ${nome}</p>
+            <button onclick="desocuparSalaSegunda('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
             `
         })
         selectedDay.innerHTML = `
@@ -80,11 +108,12 @@ if(selected == "Segunda"){
 
     }else if(selected == "Terca"){
         socket.emit('historicoTerca')
-        socket.on('alterarFrontTerca', (id,nome, horario) => {
+        socket.on('alterarFrontTerca', (id,nome, horario, dia) => {
             document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
             document.getElementById('wrapperContainerSala'+id).innerHTML = `
             <p>Horário: ${horario}</p>
             <p>Ocupada por: ${nome}</p>
+             <button onclick="desocuparSalaTerca('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
             `
         })
         selectedDay.innerHTML = `
@@ -116,11 +145,12 @@ if(selected == "Segunda"){
 
     }else if(selected == "Quarta"){
         socket.emit('historicoQuarta')
-        socket.on('alterarFrontQuarta', (id,nome, horario) => {
+        socket.on('alterarFrontQuarta', (id,nome, horario, dia) => {
             document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
             document.getElementById('wrapperContainerSala'+id).innerHTML = `
             <p>Horário: ${horario}</p>
             <p>Ocupada por: ${nome}</p>
+             <button onclick="desocuparSalaQuarta('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
             `
         })
         selectedDay.innerHTML = `
@@ -152,11 +182,12 @@ if(selected == "Segunda"){
 
     }else if(selected == "Quinta"){
         socket.emit('historicoQuinta')
-        socket.on('alterarFrontQuinta', (id,nome, horario) => {
+        socket.on('alterarFrontQuinta', (id,nome, horario, dia) => {
             document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
             document.getElementById('wrapperContainerSala'+id).innerHTML = `
             <p>Horário: ${horario}</p>
             <p>Ocupada por: ${nome}</p>
+             <button onclick="desocuparSalaQuinta('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
             `
         })
         selectedDay.innerHTML = `
@@ -188,11 +219,12 @@ if(selected == "Segunda"){
 
     }else if(selected == "Sexta"){
         socket.emit('historicoSexta')
-        socket.on('alterarFrontSexta', (id,nome, horario) => {
+        socket.on('alterarFrontSexta', (id,nome, horario, dia) => {
             document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
             document.getElementById('wrapperContainerSala'+id).innerHTML = `
             <p>Horário: ${horario}</p>
             <p>Ocupada por: ${nome}</p>
+             <button onclick="desocuparSalaSexta('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
             `
         })
         selectedDay.innerHTML = `
