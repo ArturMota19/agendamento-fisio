@@ -573,34 +573,20 @@ app.get('/', (req, res) => {
             }
         })
     })
-    function executarOnzeHoras(funcao) {
-        const agora = new Date();
-        const proximaMeiaNoite = new Date(agora);
-
-        proximaMeiaNoite.setHours(23, 0, 0, 0); 
       
-        const tempoAteOnzeHoras = proximaMeiaNoite - agora;
-
+      async function minhaFuncao() {
         const diasDaSemana = ['Domingo', 'Segunda', 'Terca', 'Quarta', 'Quinta', 'Sexta', 'Sabado'];
         const dataAtual = new Date();
         const diaDaSemanaAtual = dataAtual.getDay(); 
         const nomeDiaDaSemanaAtual = diasDaSemana[diaDaSemanaAtual];
-        
-        setTimeout(() => {
-          funcao();
-          executarOnzeHoras(funcao(nomeDiaDaSemanaAtual));
-        }, tempoAteOnzeHoras);
-      }
-      
-      async function minhaFuncao(diaDaSemanaAtual) {
-        if(diaDaSemanaAtual == 'Segunda'){
+        if(nomeDiaDaSemanaAtual == 'Segunda'){
             historicoSegunda.forEach(item =>{
                 if(item.fixo == 0){
                     const idSala = historicoSegunda.findIndex(element => element.id == item.id)
                     historicoSegunda.splice(idSala, 1)
                 }
             })
-        }else if(diaDaSemanaAtual == 'Terca'){
+        }else if(nomeDiaDaSemanaAtual == 'Terca'){
             historicoTerca.forEach(item =>{
                 if(item.fixo == 0){
                     const idSala = historicoTerca.findIndex(element => element.id == item.id)
@@ -608,7 +594,7 @@ app.get('/', (req, res) => {
                 }
             })
         }
-        else if(diaDaSemanaAtual == 'Quarta'){
+        else if(nomeDiaDaSemanaAtual == 'Quarta'){
             historicoQuarta.forEach(item =>{
                 if(item.fixo == 0){
                     const idSala = historicoQuarta.findIndex(element => element.id == item.id)
@@ -616,7 +602,7 @@ app.get('/', (req, res) => {
                 }
             })
         }
-        else if(diaDaSemanaAtual == 'Quinta'){
+        else if(nomeDiaDaSemanaAtual == 'Quinta'){
             historicoQuinta.forEach(item =>{
                 if(item.fixo == 0){
                     const idSala = historicoQuinta.findIndex(element => element.id == item.id)
@@ -624,7 +610,7 @@ app.get('/', (req, res) => {
                 }
             })
         }
-        else if(diaDaSemanaAtual == 'Sexta'){
+        else if(nomeDiaDaSemanaAtual == 'Sexta'){
             historicoSexta.forEach(item =>{
                 if(item.fixo == 0){
                     const idSala = historicoSexta.findIndex(element => element.id == item.id)
@@ -633,7 +619,25 @@ app.get('/', (req, res) => {
             })
         }
       }
-    executarOnzeHoras(minhaFuncao);
+      
+      function agendarExecucao() {
+        const agora = new Date();
+        const horaAlvo = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate(), 19, 11, 1, 0);
+      
+        let tempoAteProximaExecucao = horaAlvo - agora;
+      
+        if (tempoAteProximaExecucao < 0) {
+          // Se já passou das 23h10m01s hoje, agendar para amanhã
+          tempoAteProximaExecucao += 24 * 60 * 60 * 1000; // Adicionar 24 horas em milissegundos
+        }
+      
+        setTimeout(function() {
+          minhaFuncao();
+          agendarExecucao();
+        }, tempoAteProximaExecucao);
+      }
+      
+      agendarExecucao();
     res.render('index.hbs', {arraySalas1Segunda, arraySalas1Terca, arraySalas1Quarta,
         arraySalas1Quinta,arraySalas1Sexta, arraySalas2Segunda, arraySalas2Terca, arraySalas2Quarta,
         arraySalas2Quinta,arraySalas2Sexta,arraySalas3Segunda, arraySalas3Terca, arraySalas3Quarta,

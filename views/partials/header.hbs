@@ -1,10 +1,22 @@
 <div class="headerWrapper">
     <img src="/public/images/logo.png" class="logomarca">
-    <h1 class="titleSelected" onclick="headerSelected('Segunda')" id="Segunda">Segunda (<span id="segHeader"></span>)</h1>
-    <h1 class="titleSelected" onclick="headerSelected('Terca')" id="Terca">Terça (<span id="terHeader"></span>)</h1>
-    <h1 class="titleSelected" onclick="headerSelected('Quarta')" id="Quarta">Quarta (<span id="quaHeader"></span>)</h1>
-    <h1 class="titleSelected" onclick="headerSelected('Quinta')" id="Quinta">Quinta (<span id="quiHeader"></span>)</h1>
-    <h1 class="titleSelected" onclick="headerSelected('Sexta')" id="Sexta">Sexta (<span id="sexHeader"></span>)</h1>
+    <div class="titlesDesktop">
+      <h1 class="titleSelected" onclick="headerSelected('Segunda')" id="Segunda">Segunda (<span id="segHeader"></span>)</h1>
+      <h1 class="titleSelected" onclick="headerSelected('Terca')" id="Terca">Terça (<span id="terHeader"></span>)</h1>
+      <h1 class="titleSelected" onclick="headerSelected('Quarta')" id="Quarta">Quarta (<span id="quaHeader"></span>)</h1>
+      <h1 class="titleSelected" onclick="headerSelected('Quinta')" id="Quinta">Quinta (<span id="quiHeader"></span>)</h1>
+      <h1 class="titleSelected" onclick="headerSelected('Sexta')" id="Sexta">Sexta (<span id="sexHeader"></span>)</h1>
+    </div>
+    <img onclick="showModal()" src="/public/images/hamb.png" class="hambMenu" class="logomarca">
+
+</div>
+<div class="modalHeader" id="modalHeader">
+      <img src="/public/images/logo.png" class="logomarca2">
+      <h1 class="titleSelected" onclick="headerSelectedMobile('SegundaMobile')" id="SegundaMobile">Segunda (<span id="segHeaderMobile"></span>)</h1>
+      <h1 class="titleSelected" onclick="headerSelectedMobile('TercaMobile')" id="TercaMobile">Terça (<span id="terHeaderMobile"></span>)</h1>
+      <h1 class="titleSelected" onclick="headerSelectedMobile('QuartaMobile')" id="QuartaMobile">Quarta (<span id="quaHeaderMobile"></span>)</h1>
+      <h1 class="titleSelected" onclick="headerSelectedMobile('QuintaMobile')" id="QuintaMobile">Quinta (<span id="quiHeaderMobile"></span>)</h1>
+      <h1 class="titleSelected" onclick="headerSelectedMobile('SextaMobile')" id="SextaMobile">Sexta (<span id="sexHeaderMobile"></span>)</h1>
 </div>
 <script>
 function obterProximaData(diaSemana) {
@@ -36,5 +48,11 @@ document.getElementById('terHeader').innerHTML = terçaMaisProxima
 document.getElementById('quaHeader').innerHTML = quartaMaisProxima
 document.getElementById('quiHeader').innerHTML = quintaMaisProxima
 document.getElementById('sexHeader').innerHTML = sextaMaisProxima
+
+document.getElementById('segHeaderMobile').innerHTML = segundaMaisProxima
+document.getElementById('terHeaderMobile').innerHTML = terçaMaisProxima
+document.getElementById('quaHeaderMobile').innerHTML = quartaMaisProxima
+document.getElementById('quiHeaderMobile').innerHTML = quintaMaisProxima
+document.getElementById('sexHeaderMobile').innerHTML = sextaMaisProxima
 
 </script>

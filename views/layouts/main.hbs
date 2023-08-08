@@ -58,6 +58,241 @@ async function desocuparSalaSexta(id,nome, horario, dia){
 }
 
 // Selecionar Header
+function headerSelectedMobile(selected){
+document.getElementById('modalHeader').classList.add('notDisplay')
+const daysOfWeek = ["SegundaMobile", "TercaMobile", "QuartaMobile", "QuintaMobile", "SextaMobile"];
+let selectedDay = document.getElementById("selectedDay");
+
+for (const day of daysOfWeek) {
+    const element = document.getElementById(day);
+    element.style.color = ''
+    if( day == selected){
+        element.style.color = '#0C5202'
+    }
+
+}
+if(selected == "SegundaMobile"){
+        socket.emit('historicoSegunda')
+        socket.on('alterarFrontSegunda', (id,nome, horario, dia, fixo) => {
+            let newFixo = ''
+            if(fixo == 0){
+                newFixo = 'Não'
+            }else{
+                newFixo = 'Sim'
+            }
+            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#0C5202'
+            document.getElementById('wrapperContainerSala'+id).innerHTML = `
+            <p class="horarioFonte">Horário: ${horario}</p>
+            <p class="horarioFonte">Paciente Fixo: ${newFixo}</p>
+            <p class="ocupadaPor">Ocupada por: ${nome}</p>
+            <button class="desocuparSalaButton" onclick="desocuparSalaSegunda('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
+            `
+        })
+        selectedDay.innerHTML = `
+        <div class="salaDiv">
+            <h2>Sala 1</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas1Segunda}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 2</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas2Segunda}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 3</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas3Segunda}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        `
+
+    }else if(selected == "TercaMobile"){
+        socket.emit('historicoTerca')
+        socket.on('alterarFrontTerca', (id,nome, horario, dia, fixo) => {
+            let newFixo = ''
+            if(fixo == 0){
+                newFixo = 'Não'
+            }else{
+                newFixo = 'Sim'
+            }
+            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#0C5202'
+            document.getElementById('wrapperContainerSala'+id).innerHTML = `
+            <p class="horarioFonte">Horário: ${horario}</p>
+            <p class="horarioFonte">Paciente Fixo: ${newFixo}</p>
+            <p class="ocupadaPor">Ocupada por: ${nome}</p>
+            <button class="desocuparSalaButton" onclick="desocuparSalaTerca('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
+            `
+        })
+        selectedDay.innerHTML = `
+        <div class="salaDiv">
+            <h2>Sala 1</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas1Terca}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 2</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas2Terca}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 3</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas3Terca}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        `
+
+    }else if(selected == "QuartaMobile"){
+        socket.emit('historicoQuarta')
+        socket.on('alterarFrontQuarta', (id,nome, horario, dia, fixo) => {
+            let newFixo = ''
+            if(fixo == 0){
+                newFixo = 'Não'
+            }else{
+                newFixo = 'Sim'
+            }
+            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#0C5202'
+            document.getElementById('wrapperContainerSala'+id).innerHTML = `
+            <p class="horarioFonte">Horário: ${horario}</p>
+            <p class="horarioFonte">Paciente Fixo: ${newFixo}</p>
+            <p class="ocupadaPor">Ocupada por: ${nome}</p>
+            <button class="desocuparSalaButton" onclick="desocuparSalaQuarta('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
+            `
+        })
+        selectedDay.innerHTML = `
+        <div class="salaDiv">
+            <h2>Sala 1</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas1Quarta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 2</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas2Quarta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 3</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas3Quarta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        `
+
+    }else if(selected == "QuintaMobile"){
+        socket.emit('historicoQuinta')
+        socket.on('alterarFrontQuinta', (id,nome, horario, dia, fixo) => {
+            let newFixo = ''
+            if(fixo == 0){
+                newFixo = 'Não'
+            }else{
+                newFixo = 'Sim'
+            }
+            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#0C5202'
+            document.getElementById('wrapperContainerSala'+id).innerHTML = `
+            <p class="horarioFonte">Horário: ${horario}</p>
+            <p class="horarioFonte">Paciente Fixo: ${newFixo}</p>
+            <p class="ocupadaPor">Ocupada por: ${nome}</p>
+            <button class="desocuparSalaButton" onclick="desocuparSalaQuinta('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
+            `
+        })
+        selectedDay.innerHTML = `
+        <div class="salaDiv">
+            <h2>Sala 1</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas1Quinta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 2</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas2Quinta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 3</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas3Quinta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        `
+
+    }else if(selected == "SextaMobile"){
+        socket.emit('historicoSexta')
+        socket.on('alterarFrontSexta', (id,nome, horario, dia, fixo) => {
+            let newFixo = ''
+            if(fixo == 0){
+                newFixo = 'Não'
+            }else{
+                newFixo = 'Sim'
+            }
+            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#0C5202'
+            document.getElementById('wrapperContainerSala'+id).innerHTML = `
+            <p class="horarioFonte">Horário: ${horario}</p>
+            <p class="horarioFonte">Paciente Fixo: ${newFixo}</p>
+            <p class="ocupadaPor">Ocupada por: ${nome}</p>
+            <button class="desocuparSalaButton" onclick="desocuparSalaSexta('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
+            `
+        })
+        selectedDay.innerHTML = `
+        <div class="salaDiv">
+            <h2>Sala 1</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas1Sexta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 2</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas2Sexta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        <div class="salaDiv">
+            <h2>Sala 3</h2>
+            <div class="wrapperHorariosOcupados">
+                {{#each arraySalas3Sexta}}
+                    {{> salaContainer}}
+                {{/each}}
+            </div>
+        </div> 
+        `
+
+    }
+}
 function headerSelected(selected){
 const daysOfWeek = ["Segunda", "Terca", "Quarta", "Quinta", "Sexta"];
 let selectedDay = document.getElementById("selectedDay");
@@ -292,6 +527,10 @@ if(selected == "Segunda"){
 
     }
 }
+function showModal(){
+    document.getElementById('modalHeader').classList.remove('notDisplay')
+}
 headerSelected('Segunda')
+headerSelectedMobile('SegundaMobile')
 </script>
 </html>
