@@ -8,7 +8,6 @@
 <script>
 function obterProximaData(diaSemana) {
   const hoje = new Date();
-  console.log(hoje)
   const diferencaDias = (diaSemana - hoje.getDay() + 7) % 7;
   const proximaData = new Date(hoje.getTime() + diferencaDias * 24 * 60 * 60 * 1000);
 

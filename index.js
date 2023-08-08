@@ -572,54 +572,68 @@ app.get('/', (req, res) => {
                 }
             }
         })
-        function executarMeiaNoite(funcao) {
-            const agora = new Date();
-            const proximaMeiaNoite = new Date(agora);
-    
-            proximaMeiaNoite.setHours(24, 0, 0, 0); 
-          
-            const tempoAteMeiaNoite = proximaMeiaNoite - agora;
-            
-            setTimeout(() => {
-              funcao();
-              executarMeiaNoite(funcao);
-            }, tempoAteMeiaNoite);
-          }
-          
-          async function minhaFuncao() {
+    })
+    function executarOnzeHoras(funcao) {
+        const agora = new Date();
+        const proximaMeiaNoite = new Date(agora);
+
+        proximaMeiaNoite.setHours(23, 0, 0, 0); 
+      
+        const tempoAteOnzeHoras = proximaMeiaNoite - agora;
+
+        const diasDaSemana = ['Domingo', 'Segunda', 'Terca', 'Quarta', 'Quinta', 'Sexta', 'Sabado'];
+        const dataAtual = new Date();
+        const diaDaSemanaAtual = dataAtual.getDay(); 
+        const nomeDiaDaSemanaAtual = diasDaSemana[diaDaSemanaAtual];
+        
+        setTimeout(() => {
+          funcao();
+          executarOnzeHoras(funcao(nomeDiaDaSemanaAtual));
+        }, tempoAteOnzeHoras);
+      }
+      
+      async function minhaFuncao(diaDaSemanaAtual) {
+        if(diaDaSemanaAtual == 'Segunda' || diaDaSemanaAtual == 'Sabado' || diaDaSemanaAtual == 'Domingo'){
             historicoSegunda.forEach(item =>{
                 if(item.fixo == 0){
                     const idSala = historicoSegunda.findIndex(element => element.id == item.id)
                     historicoSegunda.splice(idSala, 1)
                 }
             })
+        }else if(diaDaSemanaAtual == 'Terca' || diaDaSemanaAtual == 'Sabado' || diaDaSemanaAtual == 'Domingo'){
             historicoTerca.forEach(item =>{
                 if(item.fixo == 0){
                     const idSala = historicoTerca.findIndex(element => element.id == item.id)
                     historicoTerca.splice(idSala, 1)
                 }
             })
+        }
+        else if(diaDaSemanaAtual == 'Quarta' || diaDaSemanaAtual == 'Sabado' || diaDaSemanaAtual == 'Domingo'){
             historicoQuarta.forEach(item =>{
                 if(item.fixo == 0){
                     const idSala = historicoQuarta.findIndex(element => element.id == item.id)
                     historicoQuarta.splice(idSala, 1)
                 }
             })
+        }
+        else if(diaDaSemanaAtual == 'Quinta' || diaDaSemanaAtual == 'Sabado' || diaDaSemanaAtual == 'Domingo'){
             historicoQuinta.forEach(item =>{
                 if(item.fixo == 0){
                     const idSala = historicoQuinta.findIndex(element => element.id == item.id)
                     historicoQuinta.splice(idSala, 1)
                 }
             })
+        }
+        else if(diaDaSemanaAtual == 'Sexta' || diaDaSemanaAtual == 'Sabado' || diaDaSemanaAtual == 'Domingo'){
             historicoSexta.forEach(item =>{
                 if(item.fixo == 0){
                     const idSala = historicoSexta.findIndex(element => element.id == item.id)
                     historicoSexta.splice(idSala, 1)
                 }
             })
-          }
-          executarMeiaNoite(minhaFuncao());
-    })
+        }
+      }
+    executarOnzeHoras(minhaFuncao);
     res.render('index.hbs', {arraySalas1Segunda, arraySalas1Terca, arraySalas1Quarta,
         arraySalas1Quinta,arraySalas1Sexta, arraySalas2Segunda, arraySalas2Terca, arraySalas2Quarta,
         arraySalas2Quinta,arraySalas2Sexta,arraySalas3Segunda, arraySalas3Terca, arraySalas3Quarta,
