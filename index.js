@@ -400,7 +400,7 @@ app.get('/', (req, res) => {
     io.on('connection',(socket) => {
         socket.on('historicoSegunda', () => {
             historicoSegunda.forEach(item =>{
-                socket.emit('alterarFrontSegunda', item.id, item.nome, item.horario, item.dia)
+                socket.emit('alterarFrontSegunda', item.id, item.nome, item.horario, item.dia, item.fixo)
             })
         })
         socket.on('desocuparSalaSegunda', (id,nome, horario,dia) => {
@@ -410,7 +410,7 @@ app.get('/', (req, res) => {
         })
         socket.on('historicoTerca', () => {
             historicoTerca.forEach(item =>{
-                socket.emit('alterarFrontTerca', item.id, item.nome, item.horario, item.dia)
+                socket.emit('alterarFrontTerca', item.id, item.nome, item.horario, item.dia, item.fixo)
             })
         })
         socket.on('desocuparSalaTerca', (id,nome, horario,dia) => {
@@ -420,7 +420,7 @@ app.get('/', (req, res) => {
         })
         socket.on('historicoQuarta', () => {
             historicoQuarta.forEach(item =>{
-                socket.emit('alterarFrontQuarta', item.id, item.nome, item.horario, item.dia)
+                socket.emit('alterarFrontQuarta', item.id, item.nome, item.horario, item.dia, item.fixo)
             })
         })
         socket.on('desocuparSalaQuarta', (id,nome, horario,dia) => {
@@ -430,7 +430,7 @@ app.get('/', (req, res) => {
         })
         socket.on('historicoQuinta', () => {
             historicoQuinta.forEach(item =>{
-                socket.emit('alterarFrontQuinta', item.id, item.nome, item.horario, item.dia)
+                socket.emit('alterarFrontQuinta', item.id, item.nome, item.horario, item.dia, item.fixo)
             })
         })
         socket.on('desocuparSalaQuinta', (id,nome, horario,dia) => {
@@ -440,7 +440,7 @@ app.get('/', (req, res) => {
         })
         socket.on('historicoSexta', () => {
             historicoSexta.forEach(item =>{
-                socket.emit('alterarFrontSexta', item.id, item.nome, item.horario, item.dia)
+                socket.emit('alterarFrontSexta', item.id, item.nome, item.horario, item.dia, item.fixo)
             })
         })
         socket.on('desocuparSalaSexta', (id,nome, horario,dia) => {
@@ -457,14 +457,14 @@ app.get('/', (req, res) => {
                     arraySalas1Segunda[idSala1].ocupada = 1
                     arraySalas1Segunda[idSala1].fixo = fixo
                     socket.emit('alterarFrontSegunda', id, nome, arraySalas1Segunda[idSala1].horario)
-                    historicoSegunda.push({id, nome, horario: arraySalas1Segunda[idSala1].horario, dia})
+                    historicoSegunda.push({id, nome, horario: arraySalas1Segunda[idSala1].horario, dia, fixo})
                 }else if(id < 47){
                     const idSala2 = arraySalas2Segunda.findIndex(element => element.id == id)
                     arraySalas2Segunda[idSala2].Ocupante = nome
                     arraySalas2Segunda[idSala2].ocupada = 1
                     arraySalas2Segunda[idSala2].fixo = fixo
                     socket.emit('alterarFrontSegunda', id, nome, arraySalas2Segunda[idSala2].horario)
-                    historicoSegunda.push({id, nome, horario: arraySalas2Segunda[idSala2].horario, dia})
+                    historicoSegunda.push({id, nome, horario: arraySalas2Segunda[idSala2].horario, dia, fixo})
                     
                 }else{
                     const idSala3 = arraySalas3Segunda.findIndex(element => element.id == id)
@@ -472,7 +472,7 @@ app.get('/', (req, res) => {
                     arraySalas3Segunda[idSala3].ocupada = 1
                     arraySalas3Segunda[idSala3].fixo = fixo
                     socket.emit('alterarFrontSegunda', id, nome, arraySalas3Segunda[idSala3].horario)
-                    historicoSegunda.push({id, nome, horario: arraySalas3Segunda[idSala3].horario, dia})
+                    historicoSegunda.push({id, nome, horario: arraySalas3Segunda[idSala3].horario, dia, fixo})
                 }
             }else if(dia == 'Terca'){
                 if(id < 24){
@@ -481,14 +481,14 @@ app.get('/', (req, res) => {
                     arraySalas1Terca[idSala1].ocupada = 1
                     arraySalas1Terca[idSala1].fixo = fixo
                     socket.emit('alterarFrontTerca', id, nome, arraySalas1Terca[idSala1].horario)
-                    historicoTerca.push({id, nome, horario: arraySalas1Terca[idSala1].horario, dia})
+                    historicoTerca.push({id, nome, horario: arraySalas1Terca[idSala1].horario, dia, fixo})
                 }else if(id < 47){
                     const idSala2 = arraySalas2Terca.findIndex(element => element.id == id)
                     arraySalas2Terca[idSala2].Ocupante = nome
                     arraySalas2Terca[idSala2].ocupada = 1
                     arraySalas2Terca[idSala2].fixo = fixo
                     socket.emit('alterarFrontTerca', id, nome, arraySalas2Terca[idSala2].horario)
-                    historicoTerca.push({id, nome, horario: arraySalas2Terca[idSala2].horario, dia})
+                    historicoTerca.push({id, nome, horario: arraySalas2Terca[idSala2].horario, dia, fixo})
                     
                 }else{
                     const idSala3 = arraySalas3Terca.findIndex(element => element.id == id)
@@ -496,7 +496,7 @@ app.get('/', (req, res) => {
                     arraySalas3Terca[idSala3].ocupada = 1
                     arraySalas3Terca[idSala3].fixo = fixo
                     socket.emit('alterarFrontTerca', id, nome, arraySalas3Terca[idSala3].horario)
-                    historicoTerca.push({id, nome, horario: arraySalas3Terca[idSala3].horario, dia})
+                    historicoTerca.push({id, nome, horario: arraySalas3Terca[idSala3].horario, dia, fixo})
                 }
             }else if(dia == 'Quarta'){
                 if(id < 24){
@@ -505,14 +505,14 @@ app.get('/', (req, res) => {
                     arraySalas1Quarta[idSala1].ocupada = 1
                     arraySalas1Quarta[idSala1].fixo = fixo
                     socket.emit('alterarFrontQuarta', id, nome, arraySalas1Quarta[idSala1].horario)
-                    historicoQuarta.push({id, nome, horario: arraySalas1Quarta[idSala1].horario, dia})
+                    historicoQuarta.push({id, nome, horario: arraySalas1Quarta[idSala1].horario, dia, fixo})
                 }else if(id < 47){
                     const idSala2 = arraySalas2Quarta.findIndex(element => element.id == id)
                     arraySalas2Quarta[idSala2].Ocupante = nome
                     arraySalas2Quarta[idSala2].ocupada = 1
                     arraySalas2Quarta[idSala2].fixo = fixo
                     socket.emit('alterarFrontQuarta', id, nome, arraySalas2Quarta[idSala2].horario)
-                    historicoQuarta.push({id, nome, horario: arraySalas2Quarta[idSala2].horario, dia})
+                    historicoQuarta.push({id, nome, horario: arraySalas2Quarta[idSala2].horario, dia, fixo})
                     
                 }else{
                     const idSala3 = arraySalas3Quarta.findIndex(element => element.id == id)
@@ -520,7 +520,7 @@ app.get('/', (req, res) => {
                     arraySalas3Quarta[idSala3].ocupada = 1
                     arraySalas3Quarta[idSala3].fixo = fixo
                     socket.emit('alterarFrontQuarta', id, nome, arraySalas3Quarta[idSala3].horario)
-                    historicoQuarta.push({id, nome, horario: arraySalas3Quarta[idSala3].horario, dia})
+                    historicoQuarta.push({id, nome, horario: arraySalas3Quarta[idSala3].horario, dia, fixo})
                 }
             }else if(dia == 'Quinta'){
                 if(id < 24){
@@ -529,14 +529,14 @@ app.get('/', (req, res) => {
                     arraySalas1Quinta[idSala1].ocupada = 1
                     arraySalas1Quinta[idSala1].fixo = fixo
                     socket.emit('alterarFrontQuinta', id, nome, arraySalas1Quinta[idSala1].horario)
-                    historicoQuinta.push({id, nome, horario: arraySalas1Quinta[idSala1].horario, dia})
+                    historicoQuinta.push({id, nome, horario: arraySalas1Quinta[idSala1].horario, dia, fixo})
                 }else if(id < 47){
                     const idSala2 = arraySalas2Quinta.findIndex(element => element.id == id)
                     arraySalas2Quinta[idSala2].Ocupante = nome
                     arraySalas2Quinta[idSala2].ocupada = 1
                     arraySalas2Quinta[idSala2].fixo = fixo
                     socket.emit('alterarFrontQuinta', id, nome, arraySalas2Quinta[idSala2].horario)
-                    historicoQuinta.push({id, nome, horario: arraySalas2Quinta[idSala2].horario, dia})
+                    historicoQuinta.push({id, nome, horario: arraySalas2Quinta[idSala2].horario, dia, fixo})
                     
                 }else{
                     const idSala3 = arraySalas3Quinta.findIndex(element => element.id == id)
@@ -544,7 +544,7 @@ app.get('/', (req, res) => {
                     arraySalas3Quinta[idSala3].ocupada = 1
                     arraySalas3Quinta[idSala3].fixo = fixo
                     socket.emit('alterarFrontQuinta', id, nome, arraySalas3Quinta[idSala3].horario)
-                    historicoQuinta.push({id, nome, horario: arraySalas3Quinta[idSala3].horario, dia})
+                    historicoQuinta.push({id, nome, horario: arraySalas3Quinta[idSala3].horario, dia, fixo})
                 }
             }else{
                 if(id < 24){
@@ -553,14 +553,14 @@ app.get('/', (req, res) => {
                     arraySalas1Sexta[idSala1].ocupada = 1
                     arraySalas1Sexta[idSala1].fixo = fixo
                     socket.emit('alterarFrontSexta', id, nome, arraySalas1Sexta[idSala1].horario)
-                    historicoSexta.push({id, nome, horario: arraySalas1Sexta[idSala1].horario, dia})
+                    historicoSexta.push({id, nome, horario: arraySalas1Sexta[idSala1].horario, dia, fixo})
                 }else if(id < 47){
                     const idSala2 = arraySalas2Sexta.findIndex(element => element.id == id)
                     arraySalas2Sexta[idSala2].Ocupante = nome
                     arraySalas2Sexta[idSala2].ocupada = 1
                     arraySalas2Sexta[idSala2].fixo = fixo
                     socket.emit('alterarFrontSexta', id, nome, arraySalas2Sexta[idSala2].horario)
-                    historicoSexta.push({id, nome, horario: arraySalas2Sexta[idSala2].horario, dia})
+                    historicoSexta.push({id, nome, horario: arraySalas2Sexta[idSala2].horario, dia, fixo})
                     
                 }else{
                     const idSala3 = arraySalas3Sexta.findIndex(element => element.id == id)
@@ -568,31 +568,58 @@ app.get('/', (req, res) => {
                     arraySalas3Sexta[idSala3].ocupada = 1
                     arraySalas3Sexta[idSala3].fixo = fixo
                     socket.emit('alterarFrontSexta', id, nome, arraySalas3Sexta[idSala3].horario)
-                    historicoSexta.push({id, nome, horario: arraySalas3Sexta[idSala3].horario, dia})
+                    historicoSexta.push({id, nome, horario: arraySalas3Sexta[idSala3].horario, dia, fixo})
                 }
             }
         })
+        function executarMeiaNoite(funcao) {
+            const agora = new Date();
+            const proximaMeiaNoite = new Date(agora);
+    
+            proximaMeiaNoite.setHours(24, 0, 0, 0); 
+          
+            const tempoAteMeiaNoite = proximaMeiaNoite - agora;
+            
+            setTimeout(() => {
+              funcao();
+              executarMeiaNoite(funcao);
+            }, tempoAteMeiaNoite);
+          }
+          
+          async function minhaFuncao() {
+            historicoSegunda.forEach(item =>{
+                if(item.fixo == 0){
+                    const idSala = historicoSegunda.findIndex(element => element.id == item.id)
+                    historicoSegunda.splice(idSala, 1)
+                }
+            })
+            historicoTerca.forEach(item =>{
+                if(item.fixo == 0){
+                    const idSala = historicoTerca.findIndex(element => element.id == item.id)
+                    historicoTerca.splice(idSala, 1)
+                }
+            })
+            historicoQuarta.forEach(item =>{
+                if(item.fixo == 0){
+                    const idSala = historicoQuarta.findIndex(element => element.id == item.id)
+                    historicoQuarta.splice(idSala, 1)
+                }
+            })
+            historicoQuinta.forEach(item =>{
+                if(item.fixo == 0){
+                    const idSala = historicoQuinta.findIndex(element => element.id == item.id)
+                    historicoQuinta.splice(idSala, 1)
+                }
+            })
+            historicoSexta.forEach(item =>{
+                if(item.fixo == 0){
+                    const idSala = historicoSexta.findIndex(element => element.id == item.id)
+                    historicoSexta.splice(idSala, 1)
+                }
+            })
+          }
+          executarMeiaNoite(minhaFuncao());
     })
-    function executarMeiaNoite(funcao) {
-        const agora = new Date();
-        const proximaMeiaNoite = new Date(agora);
-
-        proximaMeiaNoite.setHours(24, 0, 0, 0); 
-      
-        const tempoAteMeiaNoite = proximaMeiaNoite - agora;
-        
-        setTimeout(() => {
-          funcao();
-          executarMeiaNoite(funcao);
-        }, tempoAteMeiaNoite);
-      }
-      
-      function minhaFuncao() {
-        historicoSegunda.splice(element => element.ocupada == 1 && element.fixo == 0)
-        socket.emit('reloadPage');
-      }
-      
-      executarMeiaNoite(minhaFuncao);
     res.render('index.hbs', {arraySalas1Segunda, arraySalas1Terca, arraySalas1Quarta,
         arraySalas1Quinta,arraySalas1Sexta, arraySalas2Segunda, arraySalas2Terca, arraySalas2Quarta,
         arraySalas2Quinta,arraySalas2Sexta,arraySalas3Segunda, arraySalas3Terca, arraySalas3Quarta,
