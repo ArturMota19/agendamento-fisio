@@ -14,6 +14,7 @@ app.engine('.hbs', exphbs.engine({ extname: '.hbs', defaultLayout: "main"}));
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
+    // Arrays das salas
     const arraySalas1Segunda = [
         { id: '001', horario: '7h30', ocupada: 0, Ocupante:'', dia: 'Segunda', fixo: 0},
         { id: '002', horario: '8h', ocupada: 0, Ocupante:'', dia: 'Segunda', fixo: 0},
@@ -391,6 +392,7 @@ app.get('/', (req, res) => {
         { id: '068', horario: '18h', ocupada: 0, Ocupante:'', dia: 'Sexta', fixo: 0},
         { id: '069', horario: '18h30', ocupada: 0, Ocupante:'', dia: 'Sexta', fixo: 0},
     ];
+    // Arrays de histórico
     const historicoSegunda = []
     const historicoTerca = []
     const historicoQuarta = []
@@ -398,6 +400,7 @@ app.get('/', (req, res) => {
     const historicoSexta = []
     // Io
     io.on('connection',(socket) => {
+        // Código para criar histórico de salas para o socket.io, ocupando e desocupando salas
         socket.on('historicoSegunda', () => {
             historicoSegunda.forEach(item =>{
                 socket.emit('alterarFrontSegunda', item.id, item.nome, item.horario, item.dia, item.fixo)
@@ -449,6 +452,8 @@ app.get('/', (req, res) => {
             socket.emit('reloadPage');
         })
 
+        // Código para ocupar sala
+        // Issue: Diminuir complexidade isolando funções
         socket.on('ocuparSala', (id,nome, horario, dia, fixo) =>{
             if(dia == 'Segunda'){
                 if(id < 24){
@@ -619,7 +624,7 @@ app.get('/', (req, res) => {
             })
         }
       }
-      
+      // Código para descoupar automáticamente as salas às 19h da noite
       function agendarExecucao() {
         const agora = new Date();
         const horaAlvo = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate(), 19, 11, 1, 0);
@@ -627,7 +632,7 @@ app.get('/', (req, res) => {
         let tempoAteProximaExecucao = horaAlvo - agora;
       
         if (tempoAteProximaExecucao < 0) {
-          // Se já passou das 23h10m01s hoje, agendar para amanhã
+          // Se já passou das 19h11m01s hoje, agendar para amanhã
           tempoAteProximaExecucao += 24 * 60 * 60 * 1000; // Adicionar 24 horas em milissegundos
         }
       
@@ -644,4 +649,4 @@ app.get('/', (req, res) => {
         arraySalas3Quinta,arraySalas3Sexta});
 })
 
-console.log('Rodando na porta 3000');
+console.log('Projeto rodando com sucesso.');

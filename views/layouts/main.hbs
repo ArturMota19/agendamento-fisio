@@ -25,6 +25,8 @@ const socket = io.connect()
 socket.on('reloadPage', () => {
     window.location.reload()
 })
+
+// Passar e receber chamadas do socket.io
 function returnName(id, horario, dia){
     const nomeEvent = document.getElementById("nomeEvent"+id)
     const pacienteFixo = document.getElementById("pacienteFixo"+id)
@@ -59,7 +61,7 @@ async function desocuparSalaSexta(id,nome, horario, dia){
     }
 }
 
-// Selecionar Header
+// Mudar dia header mobile
 function headerSelectedMobile(selected){
 document.getElementById('modalHeader').classList.add('notDisplay')
 const daysOfWeek = ["SegundaMobile", "TercaMobile", "QuartaMobile", "QuintaMobile", "SextaMobile"];
@@ -295,6 +297,8 @@ if(selected == "SegundaMobile"){
 
     }
 }
+
+// Mudar dia no header
 function headerSelected(selected){
 const daysOfWeek = ["Segunda", "Terca", "Quarta", "Quinta", "Sexta"];
 let selectedDay = document.getElementById("selectedDay");
@@ -529,9 +533,13 @@ if(selected == "Segunda"){
 
     }
 }
+
+// Abrir modal mobile
 function showModal(){
     document.getElementById('modalHeader').classList.remove('notDisplay')
 }
+
+// Funções para Iniciar
 headerSelected('Segunda')
 headerSelectedMobile('SegundaMobile')
 </script>
