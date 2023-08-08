@@ -212,6 +212,52 @@ table {
 .notDisplay{
     display: none !important;
 }
+.footerWrapper{
+    height: 3rem;
+    background-color: #8D0795;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    margin-top: 3rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    appearance: none;
+    border: none;
+    text-decoration: none
+}
+
+a { 
+    color: inherit; 
+    outline: none;
+    appearance: none;
+    border: none;
+    text-decoration: none
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background:#CFFADD;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: teal;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(1, 65, 65);
+  }
 
 
 @media only screen and (max-width : 1025px) {
@@ -220,10 +266,15 @@ table {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        height: 6rem;
     }
     .hambMenu{
         display: flex;
-        width: 3rem;
+        width: 5rem;
+        padding-right: 3rem;
+    }
+    .logomarca{
+        padding-left: 3rem;
     }
     .titlesDesktop{
         display: none;
@@ -288,5 +339,22 @@ table {
     }
     .salaDiv h2{
         font-size: 4rem;
+    }
+    .footerWrapper{
+        height: 5rem;
+        background-color: #8D0795;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        margin-top: 3rem;
+        color: white;
+        font-size: 2rem;
+        font-weight: 700;
+        font-family: 'Inter', sans-serif;
+        outline: none;
+        appearance: none;
+        border: none;
+        text-decoration: none
     }
 }
