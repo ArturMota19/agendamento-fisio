@@ -593,14 +593,14 @@ app.get('/', (req, res) => {
       }
       
       async function minhaFuncao(diaDaSemanaAtual) {
-        if(diaDaSemanaAtual == 'Segunda' || diaDaSemanaAtual == 'Sabado' || diaDaSemanaAtual == 'Domingo'){
+        if(diaDaSemanaAtual == 'Segunda'){
             historicoSegunda.forEach(item =>{
                 if(item.fixo == 0){
                     const idSala = historicoSegunda.findIndex(element => element.id == item.id)
                     historicoSegunda.splice(idSala, 1)
                 }
             })
-        }else if(diaDaSemanaAtual == 'Terca' || diaDaSemanaAtual == 'Sabado' || diaDaSemanaAtual == 'Domingo'){
+        }else if(diaDaSemanaAtual == 'Terca'){
             historicoTerca.forEach(item =>{
                 if(item.fixo == 0){
                     const idSala = historicoTerca.findIndex(element => element.id == item.id)
@@ -608,7 +608,7 @@ app.get('/', (req, res) => {
                 }
             })
         }
-        else if(diaDaSemanaAtual == 'Quarta' || diaDaSemanaAtual == 'Sabado' || diaDaSemanaAtual == 'Domingo'){
+        else if(diaDaSemanaAtual == 'Quarta'){
             historicoQuarta.forEach(item =>{
                 if(item.fixo == 0){
                     const idSala = historicoQuarta.findIndex(element => element.id == item.id)
@@ -616,7 +616,7 @@ app.get('/', (req, res) => {
                 }
             })
         }
-        else if(diaDaSemanaAtual == 'Quinta' || diaDaSemanaAtual == 'Sabado' || diaDaSemanaAtual == 'Domingo'){
+        else if(diaDaSemanaAtual == 'Quinta'){
             historicoQuinta.forEach(item =>{
                 if(item.fixo == 0){
                     const idSala = historicoQuinta.findIndex(element => element.id == item.id)
@@ -624,7 +624,7 @@ app.get('/', (req, res) => {
                 }
             })
         }
-        else if(diaDaSemanaAtual == 'Sexta' || diaDaSemanaAtual == 'Sabado' || diaDaSemanaAtual == 'Domingo'){
+        else if(diaDaSemanaAtual == 'Sexta'){
             historicoSexta.forEach(item =>{
                 if(item.fixo == 0){
                     const idSala = historicoSexta.findIndex(element => element.id == item.id)

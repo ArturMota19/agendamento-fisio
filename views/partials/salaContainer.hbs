@@ -1,15 +1,16 @@
 
 <div class="wrapperContainerSala" id="wrapperContainerSala{{this.id}}">
+    <p class="diaSpan">Dia: {{this.dia}}</p>
     <p>Horário: {{this.horario}}</p>
-    <div>
+    <div class="wrapperPacient">
         <p>Paciente Fixo</p>
-        <select id="pacienteFixo{{this.id}}">
+        <select class="customSelect" id="pacienteFixo{{this.id}}">
             <option value="0">Não</option>
             <option value="1">Sim</option>
         </select>
     </div>
     <div class="buttonDiv">
-        <input id="nomeEvent{{this.id}}" placeholder="Nome" type="text" required/>
-        <button onclick="returnName('{{this.id}}', '{{this.horario}}', '{{this.dia}}')">Ocupar Sala</button>
+        <input class="inputNome" id="nomeEvent{{this.id}}" placeholder="Nome" type="text" required/>
+        <button class="buttonOcuparSala" onclick="returnName('{{this.id}}', '{{this.horario}}', '{{this.dia}}')">Ocupar Sala</button>
     </div>
 </div>

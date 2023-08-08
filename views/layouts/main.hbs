@@ -66,18 +66,25 @@ for (const day of daysOfWeek) {
     const element = document.getElementById(day);
     element.style.color = ''
     if( day == selected){
-        element.style.color = 'red'
+        element.style.color = '#0C5202'
     }
 
 }
 if(selected == "Segunda"){
         socket.emit('historicoSegunda')
-        socket.on('alterarFrontSegunda', (id,nome, horario, dia) => {
-            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
+        socket.on('alterarFrontSegunda', (id,nome, horario, dia, fixo) => {
+            let newFixo = ''
+            if(fixo == 0){
+                newFixo = 'Não'
+            }else{
+                newFixo = 'Sim'
+            }
+            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#0C5202'
             document.getElementById('wrapperContainerSala'+id).innerHTML = `
-            <p>Horário: ${horario}</p>
-            <p>Ocupada por: ${nome}</p>
-            <button onclick="desocuparSalaSegunda('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
+            <p class="horarioFonte">Horário: ${horario}</p>
+            <p class="horarioFonte">Paciente Fixo: ${newFixo}</p>
+            <p class="ocupadaPor">Ocupada por: ${nome}</p>
+            <button class="desocuparSalaButton" onclick="desocuparSalaSegunda('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
             `
         })
         selectedDay.innerHTML = `
@@ -109,12 +116,19 @@ if(selected == "Segunda"){
 
     }else if(selected == "Terca"){
         socket.emit('historicoTerca')
-        socket.on('alterarFrontTerca', (id,nome, horario, dia) => {
-            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
+        socket.on('alterarFrontTerca', (id,nome, horario, dia, fixo) => {
+            let newFixo = ''
+            if(fixo == 0){
+                newFixo = 'Não'
+            }else{
+                newFixo = 'Sim'
+            }
+            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#0C5202'
             document.getElementById('wrapperContainerSala'+id).innerHTML = `
-            <p>Horário: ${horario}</p>
-            <p>Ocupada por: ${nome}</p>
-             <button onclick="desocuparSalaTerca('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
+            <p class="horarioFonte">Horário: ${horario}</p>
+            <p class="horarioFonte">Paciente Fixo: ${newFixo}</p>
+            <p class="ocupadaPor">Ocupada por: ${nome}</p>
+            <button class="desocuparSalaButton" onclick="desocuparSalaTerca('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
             `
         })
         selectedDay.innerHTML = `
@@ -146,12 +160,19 @@ if(selected == "Segunda"){
 
     }else if(selected == "Quarta"){
         socket.emit('historicoQuarta')
-        socket.on('alterarFrontQuarta', (id,nome, horario, dia) => {
-            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
+        socket.on('alterarFrontQuarta', (id,nome, horario, dia, fixo) => {
+            let newFixo = ''
+            if(fixo == 0){
+                newFixo = 'Não'
+            }else{
+                newFixo = 'Sim'
+            }
+            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#0C5202'
             document.getElementById('wrapperContainerSala'+id).innerHTML = `
-            <p>Horário: ${horario}</p>
-            <p>Ocupada por: ${nome}</p>
-             <button onclick="desocuparSalaQuarta('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
+            <p class="horarioFonte">Horário: ${horario}</p>
+            <p class="horarioFonte">Paciente Fixo: ${newFixo}</p>
+            <p class="ocupadaPor">Ocupada por: ${nome}</p>
+            <button class="desocuparSalaButton" onclick="desocuparSalaQuarta('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
             `
         })
         selectedDay.innerHTML = `
@@ -183,12 +204,19 @@ if(selected == "Segunda"){
 
     }else if(selected == "Quinta"){
         socket.emit('historicoQuinta')
-        socket.on('alterarFrontQuinta', (id,nome, horario, dia) => {
-            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
+        socket.on('alterarFrontQuinta', (id,nome, horario, dia, fixo) => {
+            let newFixo = ''
+            if(fixo == 0){
+                newFixo = 'Não'
+            }else{
+                newFixo = 'Sim'
+            }
+            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#0C5202'
             document.getElementById('wrapperContainerSala'+id).innerHTML = `
-            <p>Horário: ${horario}</p>
-            <p>Ocupada por: ${nome}</p>
-             <button onclick="desocuparSalaQuinta('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
+            <p class="horarioFonte">Horário: ${horario}</p>
+            <p class="horarioFonte">Paciente Fixo: ${newFixo}</p>
+            <p class="ocupadaPor">Ocupada por: ${nome}</p>
+            <button class="desocuparSalaButton" onclick="desocuparSalaQuinta('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
             `
         })
         selectedDay.innerHTML = `
@@ -220,12 +248,19 @@ if(selected == "Segunda"){
 
     }else if(selected == "Sexta"){
         socket.emit('historicoSexta')
-        socket.on('alterarFrontSexta', (id,nome, horario, dia) => {
-            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#F3512A'
+        socket.on('alterarFrontSexta', (id,nome, horario, dia, fixo) => {
+            let newFixo = ''
+            if(fixo == 0){
+                newFixo = 'Não'
+            }else{
+                newFixo = 'Sim'
+            }
+            document.getElementById('wrapperContainerSala'+id).style.backgroundColor = '#0C5202'
             document.getElementById('wrapperContainerSala'+id).innerHTML = `
-            <p>Horário: ${horario}</p>
-            <p>Ocupada por: ${nome}</p>
-             <button onclick="desocuparSalaSexta('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
+            <p class="horarioFonte">Horário: ${horario}</p>
+            <p class="horarioFonte">Paciente Fixo: ${newFixo}</p>
+            <p class="ocupadaPor">Ocupada por: ${nome}</p>
+            <button class="desocuparSalaButton" onclick="desocuparSalaSexta('${id}', '${nome}', '${horario}', '${dia}')">Desocupar Sala</button>
             `
         })
         selectedDay.innerHTML = `
