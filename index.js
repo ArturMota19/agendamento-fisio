@@ -597,99 +597,65 @@ app.get('/', (req, res) => {
         })
     })
       
-      async function minhaFuncao() {
-        const diasDaSemana = ['Domingo', 'Segunda', 'Terca', 'Quarta', 'Quinta', 'Sexta', 'Sabado'];
-        const dataAtual = new Date();
-        const diaDaSemanaAtual = dataAtual.getDay(); 
-        const nomeDiaDaSemanaAtual = diasDaSemana[diaDaSemanaAtual];
-        if(nomeDiaDaSemanaAtual == 'Segunda'){
-            historicoSegunda.forEach(item =>{
-                if(item.fixo == 0){
-                    const idSala = historicoSegunda.findIndex(element => element.id == item.id)
-                    historicoSegunda.splice(idSala, 1)
-                }
-            })
-        }else if(nomeDiaDaSemanaAtual == 'Terca'){
-            historicoTerca.forEach(item =>{
-                if(item.fixo == 0){
-                    const idSala = historicoTerca.findIndex(element => element.id == item.id)
-                    historicoTerca.splice(idSala, 1)
-                }
-            })
-        }
-        else if(nomeDiaDaSemanaAtual == 'Quarta'){
-            historicoQuarta.forEach(item =>{
-                if(item.fixo == 0){
-                    const idSala = historicoQuarta.findIndex(element => element.id == item.id)
-                    historicoQuarta.splice(idSala, 1)
-                }
-            })
-        }
-        else if(nomeDiaDaSemanaAtual == 'Quinta'){
-            historicoQuinta.forEach(item =>{
-                if(item.fixo == 0){
-                    const idSala = historicoQuinta.findIndex(element => element.id == item.id)
-                    historicoQuinta.splice(idSala, 1)
-                }
-            })
-        }
-        else if(nomeDiaDaSemanaAtual == 'Sexta'){
-            historicoSexta.forEach(item =>{
-                if(item.fixo == 0){
-                    const idSala = historicoSexta.findIndex(element => element.id == item.id)
-                    historicoSexta.splice(idSala, 1)
-                }
-            })
-        }
-      }
-      // Código para descoupar automáticamente as salas às 19h da noite
-      function agendarExecucao() {
-        const agora = new Date();
-        const horaAlvo = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate(), 19, 11, 1, 0);
-      
-        let tempoAteProximaExecucao = horaAlvo - agora;
-      
-        if (tempoAteProximaExecucao < 0) {
-          // Se já passou das 19h11m01s hoje, agendar para amanhã
-          tempoAteProximaExecucao += 24 * 60 * 60 * 1000; // Adicionar 24 horas em milissegundos
-        }
-      
-        setTimeout(function() {
-          minhaFuncao();
-          agendarExecucao();
-        }, tempoAteProximaExecucao);
-      }
-      
-      agendarExecucao();
     res.render('index.hbs', {arraySalas1Segunda, arraySalas1Terca, arraySalas1Quarta,
         arraySalas1Quinta,arraySalas1Sexta, arraySalas2Segunda, arraySalas2Terca, arraySalas2Quarta,
         arraySalas2Quinta,arraySalas2Sexta,arraySalas3Segunda, arraySalas3Terca, arraySalas3Quarta,
         arraySalas3Quinta,arraySalas3Sexta});
 })
 
-
-// function teste(htmlText){
-//     sgMail.setApiKey('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')
-//     const msg = {
-//     to: 'fisiomi123@gmail.com', // Change to your recipient
-//     from: 'fisiomi123@gmail.com', // Change to your verified sender
-//     subject: 'Checagem de Salas',
-//     text: 'Relatório',
-//     html: `
-//         ${htmlText}
-//     `
-//     }
-//     sgMail
-//     .send(msg)
-//     .then(() => {
-//         console.log('Email sent')
-//     })
-//     .catch((error) => {
-//         console.error(error)
-//     })
-// }
 app.get('/salasReturn', (req, res) => {
+    console.log('Acessou a rota.')
     setInterval( function() {
+        let historicoSegundaArray = []
+        let historicoTercaArray = []
+        let historicoQuartaArray = []
+        let historicoQuintaArray = []
+        let historicoSextaArray = []
+        historicoSegunda.forEach(item =>{
+            if( item.id < 24){
+                historicoSegundaArray.push('Sala 1, Segunda-Feira, Horário:'+ item.horario + ' Pessoa: ' + item.nome)
+            }else if(item.id > 23 && item.id < 47){
+                historicoSegundaArray.push('Sala 2, Segunda-Feira, Horário:'+ item.horario + ' Pessoa: ' + item.nome)
+            }else{
+                historicoSegundaArray.push('Sala 3, Segunda-Feira, Horário:'+ item.horario + ' Pessoa: ' + item.nome)
+            }
+        })
+        historicoTerca.forEach(item =>{
+            if( item.id < 24){
+                historicoTercaArray.push('Sala 1, Terca-Feira, Horário:'+ item.horario + ' Pessoa: ' + item.nome)
+            }else if(item.id > 23 && item.id < 47){
+                historicoTercaArray.push('Sala 2, Terca-Feira, Horário:'+ item.horario + ' Pessoa: ' + item.nome)
+            }else{
+                historicoTercaArray.push('Sala 3, Terca-Feira, Horário:'+ item.horario + ' Pessoa: ' + item.nome)
+            }
+        })
+        historicoQuarta.forEach(item =>{
+            if( item.id < 24){
+                historicoQuartaArray.push('Sala 1, Quarta-Feira, Horário:'+ item.horario + ' Pessoa: ' + item.nome)
+            }else if(item.id > 23 && item.id < 47){
+                historicoQuartaArray.push('Sala 2, Quarta-Feira, Horário:'+ item.horario + ' Pessoa: ' + item.nome)
+            }else{
+                historicoQuartaArray.push('Sala 3, Quarta-Feira, Horário:'+ item.horario + ' Pessoa: ' + item.nome)
+            }
+        })
+        historicoQuinta.forEach(item =>{
+            if( item.id < 24){
+                historicoQuintaArray.push('Sala 1, Quinta-Feira, Horário:'+ item.horario + ' Pessoa: ' + item.nome)
+            }else if(item.id > 23 && item.id < 47){
+                historicoQuintaArray.push('Sala 2, Quinta-Feira, Horário:'+ item.horario + ' Pessoa: ' + item.nome)
+            }else{
+                historicoQuintaArray.push('Sala 3, Quinta-Feira, Horário:'+ item.horario + ' Pessoa: ' + item.nome)
+            }
+        })
+        historicoSexta.forEach(item =>{
+            if( item.id < 24){
+                historicoSextaArray.push('Sala 1, Sexta-Feira, Horário:'+ item.horario + ' Pessoa: ' + item.nome)
+            }else if(item.id > 23 && item.id < 47){
+                historicoSextaArray.push('Sala 2, Sexta-Feira, Horário:'+ item.horario + ' Pessoa: ' + item.nome)
+            }else{
+                historicoSextaArray.push('Sala 3, Sexta-Feira, Horário:'+ item.horario + ' Pessoa: ' + item.nome)
+            }
+        })
         sgMail.setApiKey('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')
         const msg = {
         to: 'fisiomi123@gmail.com', // Change to your recipient
@@ -697,7 +663,20 @@ app.get('/salasReturn', (req, res) => {
         subject: 'Checagem de Salas',
         text: 'Relatório',
         html: `
-            ${JSON.stringify({historicoSegunda, historicoTerca, historicoQuarta, historicoQuinta, historicoSexta})}
+                <strong>Segunda-Feira:</strong>
+                ${JSON.stringify({historicoSegundaArray})}
+                -
+                <strong>Terca-Feira:</strong>
+                ${JSON.stringify({historicoTercaArray})}
+                -
+                <strong>Quarta-Feira:</strong>
+                ${JSON.stringify({historicoQuartaArray})}
+                -
+                <strong>Quinta-Feira:</strong>
+                ${JSON.stringify({historicoQuintaArray})}
+                -
+                <strong>Sexta-Feira:</strong>
+                ${JSON.stringify({historicoSextaArray})}
         `
         }
         sgMail
@@ -708,11 +687,11 @@ app.get('/salasReturn', (req, res) => {
         .catch((error) => {
             console.error(error)
         })
-    }, 15000 );
+    }, 3600000 );
     res.json({historicoSegunda, historicoTerca, historicoQuarta, historicoQuinta, historicoSexta});
 })
 
-http.get('http://localhost:3000/salasReturn', (response) => {
+http.get('http://agendamento-fisio-production.up.railway.app/salasReturn', (response) => {
     console.log('Rota acessada automaticamente.');
 })
 
